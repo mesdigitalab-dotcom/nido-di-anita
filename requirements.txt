@@ -1,0 +1,10 @@
+Django>=5.0,<5.3
+psycopg[binary]>=3.1,<4
+gunicorn>=22.0,<23
+whitenoise>=6.6,<7
+python-dotenv>=1.0,<2
+icalendar>=5.0,<6
+requests>=2.31,<3
+Pillow>=10.0,<11
+APScheduler>=3.10,<4
+django-storages[s3]>=1.14,<2

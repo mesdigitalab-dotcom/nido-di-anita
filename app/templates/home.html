@@ -1,0 +1,331 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Il Nido di Anita – Casa Vacanze a Cupra Marittima{% endblock %}
+{% block meta_description %}Bilocale con soppalco, giardino privato e mare a pochi minuti. Una casa vacanze accogliente e moderna nel cuore di Cupra Marittima.{% endblock %}
+
+{% block content %}
+
+<!-- ===========================
+     HERO
+=========================== -->
+<section class="hero">
+    <div class="container">
+        <div class="row align-items-center g-5">
+
+            <div class="col-lg-6">
+                <span class="hero__overline">Casa Vacanze nelle Marche</span>
+                <h1 class="hero__title">Il tuo rifugio sul mare</h1>
+                <p class="hero__text">
+                    Un bilocale accogliente al piano terra. Fino a 4 posti letto, giardino privato con doccia esterna
+                    e tutto il necessario per una vacanza rilassante a Cupra Marittima. A pochi minuti dalla spiaggia,
+                    nel cuore della Riviera Adriatica.
+                </p>
+                <div class="hero__buttons">
+                    <a href="{% url 'prenota' %}" class="btn btn-white btn-lg px-4">Richiedi disponibilità</a>
+                    <a href="{% url 'casa' %}" class="btn btn-outline-light btn-lg px-4">Scopri la casa</a>
+                </div>
+            </div>
+
+            <div class="col-lg-6 text-center">
+                
+                <div id="introCarousel" class="carousel slide custom-carousel" data-bs-ride="carousel" data-bs-interval="3000">
+                    <div class="carousel-inner">
+
+                        <!-- IMG 1 -->
+                        <div class="carousel-item active">
+                            <img src="https://www.zenzeroshop.it/media/catalog/product/cache/b26673db00b7a6c9609dc1f8b9a2c019/s/o/soggiorno-pero-e-bianco-offerta.jpg"
+                                 alt="Soggiorno moderno"
+                                 class="d-block w-100 img-ph img-ph--lg">
+                        </div>
+
+                        <!-- IMG 2 -->
+                        <div class="carousel-item">
+                            <img src="https://www.eurodesignsrl.it/wp-content/uploads/2025/11/camilla-card-categoria-moderne.jpg"
+                                 alt="Camera moderna"
+                                 class="d-block w-100 img-ph img-ph--lg">
+                        </div>
+
+                        <!-- IMG 3 -->
+                        <div class="carousel-item">
+                            <img src="https://www.verdeprogetto.it/wp-content/uploads/2022/06/giardino-moderno-classico-1080x765.jpg"
+                                 alt="Giardino moderno"
+                                 class="d-block w-100 img-ph img-ph--lg">
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            
+
+        </div>
+    </div>
+</section>
+
+
+<!-- ===========================
+     PER CHI È PERFETTA
+=========================== -->
+<section id="scopri" class="section-1 bg-white">
+    <div class="container">
+        <h2 class="section-title animate-on-scroll">Adatto a tutti</h2>
+        <p class="section-subtitle animate-on-scroll">Un nido che sa accogliere ogni tipo di ospite</p>
+
+        <div class="row g-4 mt-2">
+            <div class="col-md-4 animate-on-scroll">
+                <div class="card-1 s-soft">
+                    
+                    <h3>Coppie</h3>
+                    <p class="text-muted small">Un luogo tranquillo, vicino al mare e al centro. Perfetto per chi cerca relax e intimità.</p>
+                </div>
+            </div>
+            <div class="col-md-4 animate-on-scroll">
+                <div class="card-1 s-soft">
+                    <h3>Famiglie</h3>
+                    <p class="text-muted small">disponiamo di 4 posti letto, giardino privato, spiaggia a pochi passi e servizi raggiungibili a piedi.</p>
+                </div>
+            </div>
+            <div class="col-md-4 animate-on-scroll">
+                <div class="card-1 s-soft">
+                    <h3>Chi ama esplorare</h3>
+                    <p class="text-muted small">Cupra, Grottammare e San Benedetto: borghi, mare, passeggiate e buon cibo.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<!-- ===========================
+     DOVE SIAMO
+=========================== -->
+<section class="section-1 bg-pearl">
+    <div class="container">
+        <div class="row align-items-center g-5">
+
+            <div class="col-lg-6 animate-on-scroll">
+                <span class="overline">Posizione</span>
+                <h2 class="section-title text-start mt-2 mb-3">Dove ci troviamo</h2>
+                <p class="text-muted">
+                    Il Nido di Anita si trova in Via Trento 14, Cupra Marittima,
+                    in una posizione privilegiata a pochi passi dal mare e dal lungomare.
+                </p>
+                <p class="text-muted">
+                    La casa è situata in una zona tranquilla e comoda, perfetta per chi desidera
+                    muoversi a piedi e raggiungere facilmente spiaggia, negozi e ristoranti.
+                </p>
+                <p class="text-muted">
+                    Siamo a brevissima distanza dalla stazione ferroviaria di Cupra Marittima —
+                    ideale per chi viaggia senza auto o preferisce spostarsi in treno.
+                </p>
+                <div class="mt-3 d-flex gap-2 flex-wrap">
+                    <span class="tag s-tag-brand">🏖️ spiaggia</span>
+                    <span class="tag s-tag-brand">🚂 Stazione </span>
+                    <span class="tag s-tag-brand">🛒 Negozi e alimentari</span>
+                </div>
+            </div>
+
+            <div class="col-lg-6 animate-on-scroll">
+                <a href="https://www.google.com/maps/dir/?api=1&destination=Via+Trento+14,+Cupra+Marittima" target="_blank">
+                    <div class="map-card">
+                        <img src="{% static 'img/maps.png' %}" alt="Mappa posizione Il Nido di Anita">
+                        <div class="map-card__footer">Via Trento 14, Cupra Marittima — clicca per aprire maps</div>
+                    </div>
+                </a>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+
+<!-- ===========================
+     SERVIZIO + CAROUSEL
+=========================== -->
+<section class="section-1 bg-white">
+    <div class="container">
+        <div class="row g-5 align-items-center">
+            <div class="col-lg-6 animate-on-scroll">
+                <div class="slider-wrapper">
+                    <img src="https://lamenteemeravigliosa.it/wp-content/uploads/2015/03/famiglia-felice.png">
+                </div>
+
+
+            </div>
+
+
+            <div class="col-lg-6 animate-on-scroll">
+                <span class="overline">Il nostro servizio</span>
+                <h2 class="section-title text-start mt-2 mb-3">Una vacanza senza pensieri</h2>
+                <p class="text-muted">
+                    Il Nido di Anita è pensato per chi desidera una vacanza semplice, comoda e autentica.
+                    Un luogo dove rallentare, respirare l'aria del mare e vivere Cupra Marittima
+                    con la stessa naturalezza di chi ci abita da sempre.
+                </p>
+                <p class="text-muted">
+                    Offriamo tutto ciò che serve per rendere il soggiorno piacevole,
+                    rilassante e memorabile: comfort, cura dei dettagli e un'accoglienza
+                    che fa sentire davvero a casa.
+                </p>
+                <a href="{% url 'prenota' %}" class="btn btn-primary mt-3 px-4">Prenota ora</a>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+
+<!-- ===========================
+     COSA TROVERAI
+=========================== -->
+<section class="section-1 bg-white">
+    <div class="container">
+        <h2 class="section-title animate-on-scroll">Cosa troverai al tuo arrivo</h2>
+        <p class="section-subtitle animate-on-scroll">Tutto pronto, nessun pensiero</p>
+
+        <div class="row g-4 mt-2">
+            <div class="col-md-3 col-6 animate-on-scroll">
+                <div class="card-3 s-white">
+                    
+                    <h4>Letto pronto</h4>
+                    <p class="small text-muted">Biancheria fresca e ambiente accogliente fin dal primo momento.</p>
+                </div>
+            </div>
+            <div class="col-md-3 col-6 animate-on-scroll">
+                <div class="card-3 s-white">
+                    
+                    <h4>Aria condizionata e pompa di calore</h4>
+                    <p class="small text-muted">Il massimo del comfort in ogni stagione dell'anno.</p>
+                </div>
+            </div>
+            <div class="col-md-3 col-6 animate-on-scroll">
+                <div class="card-3 s-white">
+                    
+                    <h4>Giardino privato</h4>
+                    <p class="small text-muted">Doccia esterna, tavolo e piccola griglia per le serate estive.</p>
+                </div>
+            </div>
+            <div class="col-md-3 col-6 animate-on-scroll">
+                <div class="card-3 s-white">
+                    
+                    <h4>Posizione centrale</h4>
+                    <p class="small text-muted">A pochi passi dal mare, dai negozi e dai ristoranti.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ===========================
+     FAQ
+=========================== -->
+<section class="section-1 bg-soft">
+    <div class="container">
+        <h2 class="section-title animate-on-scroll">Domande frequenti</h2>
+        <p class="section-subtitle animate-on-scroll">Tutto quello che vuoi sapere prima di prenotare</p>
+
+        <div class="faq-list mt-4" style="max-width:680px;margin:0 auto">
+            <div class="card-4 s-flat animate-on-scroll" onclick="openFaq('La casa è adatta ai bambini?', 'Sì, la zona è tranquilla e la spiaggia è perfetta anche per i più piccoli. Il giardino privato offre uno spazio sicuro per giocare.')">
+                <div class="d-flex justify-content-between align-items-center">
+                    <h4 class="mb-0">La casa è adatta ai bambini?</h4>
+                    <span style="color:var(--brand-slate);font-size:1.2rem">›</span>
+                </div>
+            </div>
+            <div class="card-4 s-flat animate-on-scroll" onclick="openFaq('È possibile parcheggiare vicino?', 'Sì, ci sono parcheggi gratuiti nelle vicinanze della struttura, facilmente raggiungibili a piedi.')">
+                <div class="d-flex justify-content-between align-items-center">
+                    <h4 class="mb-0">È possibile parcheggiare vicino?</h4>
+                    <span style="color:var(--brand-slate);font-size:1.2rem">›</span>
+                </div>
+            </div>
+            <div class="card-4 s-flat animate-on-scroll" onclick="openFaq('La cucina è attrezzata?', 'Sì, troverai tutto il necessario per cucinare comodamente: stoviglie, pentole, elettrodomestici e molto altro.')">
+                <div class="d-flex justify-content-between align-items-center">
+                    <h4 class="mb-0">La cucina è attrezzata?</h4>
+                    <span style="color:var(--brand-slate);font-size:1.2rem">›</span>
+                </div>
+            </div>
+            <div class="card-4 s-flat animate-on-scroll" onclick="openFaq('Quali sono gli orari di check-in e check-out?', 'Check-in dalle 15:00, check-out entro le 10:00. È possibile concordare orari diversi contattandoci direttamente.')">
+                <div class="d-flex justify-content-between align-items-center">
+                    <h4 class="mb-0">Quali sono gli orari di check-in e check-out?</h4>
+                    <span style="color:var(--brand-slate);font-size:1.2rem">›</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<!-- FAQ Sidebar -->
+<div id="faqSidebar"
+     style="
+        position: fixed;
+        top: 0;
+        right: -100%;
+        width: 100%;
+        max-width: 420px;
+        height: 100vh;
+        background: #fff;
+        box-shadow: -4px 0 24px rgba(58,42,110,0.12);
+        padding: 32px 24px;
+        transition: right .35s cubic-bezier(0.22,1,0.36,1);
+        z-index: 9999;
+        overflow-y: auto;
+        border-left: 0.5px solid var(--brand-lavender);
+     ">
+
+    <button onclick="closeFaq()"
+            style="
+                position: absolute;
+                top: 16px;
+                right: 16px;
+                background: transparent;
+                border: none;
+                font-size: 24px;
+                cursor: pointer;
+                color: var(--text-muted);
+                line-height: 1;
+            ">
+        &times;
+    </button>
+
+    <div style="
+        width: 32px;
+        height: 3px;
+        background: var(--gradient-brand);
+        border-radius: 2px;
+        margin-bottom: 20px;
+        margin-top: 12px;
+    "></div>
+
+    <h3 id="faqTitle"
+        style="
+            font-family: var(--font-display);
+            font-size: clamp(1.2rem, 4vw, 1.4rem);
+            color: var(--text-heading);
+            margin-bottom: 12px;
+        ">
+    </h3>
+
+    <p id="faqContent"
+       style="
+            font-size: clamp(.9rem, 3vw, .95rem);
+            color: var(--text-body);
+            line-height: 1.75;
+       ">
+    </p>
+</div>
+
+{% endblock %}
+
+{% block script %}
+<script>
+function openFaq(title, content) {
+    document.getElementById("faqTitle").innerText = title;
+    document.getElementById("faqContent").innerText = content;
+    document.getElementById("faqSidebar").style.right = "0";
+}
+function closeFaq() {
+    document.getElementById("faqSidebar").style.right = "-440px";
+}
+</script>
+{% endblock %}
+

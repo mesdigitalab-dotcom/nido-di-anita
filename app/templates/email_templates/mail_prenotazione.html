@@ -1,0 +1,71 @@
+<div style="
+  font-family:'Nunito','Segoe UI',Arial,sans-serif;
+  font-size:16px;
+  color:#1F2A37;
+  line-height:1.7;
+  background:#F7FAFF;
+  padding:32px;
+  border-radius:14px;
+  border:1px solid #E1E9FF;
+  box-shadow:0 10px 30px rgba(5,120,249,0.12);
+  max-width:600px;
+  margin:0 auto;
+">
+
+  <!-- HEADER LOGO -->
+  <div style="text-align:center; margin-bottom:24px;">
+      <div style="
+          width:90px;
+          height:90px;
+          background:#ffffff;
+          border-radius:50%;
+          padding:10px;
+          margin:0 auto 12px;
+          box-shadow:0 8px 20px rgba(5,120,249,0.15);
+      ">
+          <img src="{logo}" alt="Logo Il Nido di Anita" style="width:100%; height:auto; border-radius:50%;">
+      </div>
+      <h2 style="margin:0; font-weight:800; color:#0578F9;">Il Nido di Anita</h2>
+      <p style="margin:4px 0 0; font-size:14px; color:#6B7280;">Nuova richiesta di prenotazione</p>
+  </div>
+
+  <!-- CONTENUTO -->
+  <p style="margin:0 0 16px 0;">
+      Hai ricevuto una nuova richiesta di prenotazione da parte di <strong>{{ nome }}</strong>.
+  </p>
+
+  <p style="margin:0 0 16px 0;">
+      La persona richiede disponibilità per un soggiorno dal
+      <strong>{{ data_inizio }}</strong> al <strong>{{ data_fine }}</strong>,
+      per un totale di <strong>{{ persone }} persone</strong>.
+
+      {% if note %}
+          <br><br>Note aggiuntive: <em>"{{ note }}"</em>
+      {% endif %}
+  </p>
+
+  <div style="
+      background:#ffffff;
+      border:1px solid #E1E9FF;
+      border-radius:12px;
+      padding:16px 20px;
+      margin:20px 0;
+  ">
+      <p style="margin:0 0 6px 0;"><strong>Nome:</strong> {{ nome }}</p>
+      <p style="margin:0 0 6px 0;"><strong>Telefono:</strong> {{ telefono }}</p>
+      <p style="margin:0;"><strong>Email:</strong> {{ email }}</p>
+      <p style="margin:0;"><strong>ID:</strong> {{ id }}</p>
+  </div>
+
+  <p style="margin:0 0 20px 0;">
+      Quando sei pronto, puoi confermare la prenotazione cliccando sul pulsante qui sotto.
+      Il sistema aggiornerà automaticamente il calendario e il cliente riceverà una mail di conferma.
+  </p>
+
+  <!-- BOTTONE -->
+    <div class="d-flex justify-content-center gap-4">
+        <a href="{{ approva_url }}">✔️</a>
+        <a href="{{ rifiuta_url }}">❌</a>
+    </div>
+  </div>
+</div>

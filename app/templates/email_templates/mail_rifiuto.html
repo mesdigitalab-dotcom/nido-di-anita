@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="it">
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"></head>
+<body style="margin:0;padding:0;background:#EEF4FF;font-family:'Nunito','Segoe UI',Arial,sans-serif;">
+
+<table width="100%" cellpadding="0" cellspacing="0" style="background:#EEF4FF;padding:40px 16px;">
+  <tr><td align="center">
+    <table width="100%" cellpadding="0" cellspacing="0" style="max-width:560px;">
+
+      <!-- HEADER -->
+      <tr>
+        <td align="center" style="background:#0578F9;border-radius:14px 14px 0 0;padding:36px 32px 28px;">
+          <div style="width:88px;height:88px;border-radius:50%;overflow:hidden;
+                      border:3px solid rgba(255,255,255,.3);margin:0 auto 14px;">
+            <img src="{{ logo }}" alt="Logo Il Nido di Anita"
+                 style="width:130%;height:auto;margin-left:-15%;display:block;">
+          </div>
+          <h1 style="margin:0;font-size:22px;font-weight:800;color:#fff;letter-spacing:-.3px;">
+            Il Nido di Anita
+          </h1>
+          <p style="margin:4px 0 0;font-size:13px;color:rgba(255,255,255,.75);">
+            Casa Vacanze · Cupra Marittima
+          </p>
+        </td>
+      </tr>
+
+      <!-- BADGE STATO -->
+      <tr>
+        <td align="center" style="background:#fff;padding:0;">
+          <div style="display:inline-block;margin:0 auto;transform:translateY(-50%);">
+            <span style="display:inline-flex;align-items:center;gap:6px;
+                         background:#FFF3F3;border:1.5px solid #FFCDD2;
+                         color:#D32F2F;font-size:13px;font-weight:700;
+                         padding:6px 16px;border-radius:999px;">
+              <span style="font-size:15px;">✕</span> Prenotazione non disponibile
+            </span>
+          </div>
+        </td>
+      </tr>
+
+      <!-- CORPO -->
+      <tr>
+        <td style="background:#fff;padding:4px 36px 36px;border-radius:0 0 14px 14px;
+                   box-shadow:0 8px 32px rgba(5,120,249,.10);">
+
+          <p style="margin:0 0 16px;font-size:16px;color:#1F2A37;line-height:1.7;">
+            Salve <strong>{{ nome }}</strong>,
+          </p>
+          <p style="margin:0 0 16px;font-size:16px;color:#1F2A37;line-height:1.7;">
+            Siamo spiacenti di informarla che la sua richiesta di prenotazione
+            <strong>non è andata a buon fine</strong>.
+          </p>
+
+          <!-- BOX DATE -->
+          <div style="background:#FFF8F8;border-left:4px solid #EF5350;
+                      border-radius:0 8px 8px 0;padding:14px 18px;margin:0 0 20px;">
+            <p style="margin:0;font-size:14px;color:#6B7280;">Periodo richiesto</p>
+            <p style="margin:4px 0 0;font-size:16px;font-weight:700;color:#1F2A37;">
+              {{ start }} → {{ end }}
+            </p>
+          </div>
+
+          <p style="margin:0 0 16px;font-size:16px;color:#1F2A37;line-height:1.7;">
+            Le date selezionate non risultano più disponibili. La invitiamo a verificare
+            altre date sul nostro sito:
+          </p>
+
+          <!-- CTA -->
+          <div style="text-align:center;margin:24px 0;">
+            <a href="{{ sito }}"
+               style="display:inline-block;background:#0578F9;color:#fff;font-weight:700;
+                      font-size:15px;text-decoration:none;padding:13px 32px;
+                      border-radius:999px;letter-spacing:.2px;">
+              Verifica disponibilità →
+            </a>
+          </div>
+
+          <p style="margin:0 0 6px;font-size:15px;color:#1F2A37;line-height:1.7;">
+            Per qualsiasi domanda può contattarci a:
+            <a href="mailto:nidodianita@gmail.com?subject=Richiesta%20informazioni%20prenotazione"
+               style="color:#0578F9;font-weight:600;text-decoration:none;">
+              nidodianita@gmail.com
+            </a>
+          </p>
+          <p style="margin:24px 0 0;font-size:15px;color:#1F2A37;">
+            Ci scusiamo per il disagio.<br>
+            <strong style="color:#0578F9;">Il Nido di Anita</strong>
+          </p>
+        </td>
+      </tr>
+
+      <!-- FOOTER -->
+      <tr>
+        <td align="center" style="padding:20px 0 0;">
+          <p style="margin:0;font-size:12px;color:#9CA3AF;">
+            Cupra Marittima · Riviera delle Palme
+          </p>
+        </td>
+      </tr>
+
+    </table>
+  </td></tr>
+</table>
+
+</body>
+</html>

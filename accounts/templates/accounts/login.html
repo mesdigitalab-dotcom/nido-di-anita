@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+{% block title %}Accedi – {{ block.super }}{% endblock %}
+
+{% block content %}
+<div class="container py-5">
+  <div class="row justify-content-center">
+    <div class="col-12 col-sm-9 col-md-6 col-lg-5">
+
+      <div class="card shadow-sm border-0 rounded-4 p-4">
+        <h1 class="h4 fw-semibold text-center mb-1">Accedi</h1>
+        <p class="text-muted text-center small mb-4">Bentornato! Inserisci le tue credenziali.</p>
+
+        {% if form.non_field_errors %}
+          <div class="alert alert-danger rounded-3 py-2 small">{{ form.non_field_errors }}</div>
+        {% endif %}
+
+        <form method="post" novalidate>
+          {% csrf_token %}
+
+          <div class="mb-3">
+            <label class="form-label fw-medium" for="{{ form.username.id_for_label }}">Username o Email</label>
+            {{ form.username }}
+            {% if form.username.errors %}
+              <div class="invalid-feedback d-block">{{ form.username.errors.0 }}</div>
+            {% endif %}
+          </div>
+
+          <div class="mb-4">
+            <label class="form-label fw-medium" for="{{ form.password.id_for_label }}">Password</label>
+            {{ form.password }}
+            {% if form.password.errors %}
+              <div class="invalid-feedback d-block">{{ form.password.errors.0 }}</div>
+            {% endif %}
+          </div>
+
+          <button type="submit" class="btn btn-primary w-100">Accedi</button>
+        </form>
+
+        <hr class="my-4">
+        <p class="text-center small mb-0">
+          Non hai un account?
+          <a href="{% url 'accounts:registrazione' %}" class="fw-medium">Registrati</a>
+        </p>
+      </div>
+
+    </div>
+  </div>
+</div>
+{% endblock %}

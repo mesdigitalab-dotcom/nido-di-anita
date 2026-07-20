@@ -1,0 +1,258 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Prenota – Il Nido di Anita{% endblock %}
+{% block meta_description %}Richiedi disponibilità per la tua vacanza al Nido di Anita a Cupra Marittima.{% endblock %}
+
+{% block content %}
+
+<!-- HERO COMPATTO -->
+<section class="hero hero--compact text-center">
+    <div class="container">
+        <h1 class="hero__title">Prenota il tuo soggiorno</h1>
+        <p class="hero__text mx-auto">Compila il modulo e ti risponderemo entro 24 ore con la conferma.</p>
+    </div>
+</section>
+
+
+<!-- FORM PRENOTAZIONE -->
+<section class="section-1 bg-pearl">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-7">
+
+                <div class="card-6 s-white animate-on-scroll">
+
+                    <!-- Header card -->
+                    <div class="d-flex align-items-center gap-3 mb-4">
+                        <img 
+                            src="/static/img/logo.webp" 
+                            alt="Logo"
+                            style="
+                                width:44px;
+                                height:44px;
+                                border-radius:50%;
+                                object-fit:cover;
+                                border:0.5px solid var(--brand-lavender);
+                                background:var(--brand-fog);
+                                display:flex;
+                                align-items:center;
+                                justify-content:center;
+                                flex-shrink:0;
+                            "
+                        >
+                        <div>
+                            <h2 style="font-family:var(--font-display);font-size:1.5rem;color:var(--text-heading);margin:0">Il Nido di Anita</h2>
+                            <p style="font-size:.82rem;color:var(--text-muted);margin:0">Via Trento 14, Cupra Marittima · fino a 4 ospiti</p>
+                        </div>
+                    </div>
+
+                    <hr class="divider-brand">
+
+                    <!-- Form -->
+                    <form class="row g-3 form-brand mt-1" method="GET" action="{% url 'send_mail' %}" id="prenota">
+
+                       
+
+                        <div class="col-md-2">
+                            <label class="form-label"> Ospiti <span style="color:var(--color-danger)">*</span></label>
+                            <select class="form-select" name="persone" required>
+                                <option value="">Seleziona...</option>
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                            </select>
+                        </div>
+
+                        <div class="col-md-5">
+                            <label class="form-label">Data arrivo <span style="color:var(--color-danger)">*</span></label>
+                            <input type="text" id="start-date" name="start-date" class="form-control" placeholder="gg/mm/aaaa" required autocomplete="off">
+                        </div>
+
+                        <div class="col-md-5">
+                            <label class="form-label">Data partenza <span style="color:var(--color-danger)">*</span></label>
+                            <input type="text" id="end-date" name="end-date" class="form-control" placeholder="gg/mm/aaaa" required autocomplete="off">
+                        </div>
+
+                        <div class="col-12">
+                            <label class="form-label">Note (opzionale)</label>
+                            <textarea class="form-control" name="note" rows="3" placeholder="Richieste particolari, orari, esigenze..."></textarea>
+                        </div>
+                        
+
+                        <!-- Preview soggiorno -->
+                        <div class="col-12" id="stay-preview" style="display:none">
+                            <div style="background:var(--brand-fog);border:0.5px solid var(--brand-lavender);border-radius:var(--radius-md);padding:14px 18px;font-size:.88rem;color:var(--text-body)">
+                                <span style="font-weight:500;color:var(--brand-deep)">🗓️ Soggiorno:</span>
+                                <span id="stay-text" class="ms-2"></span>
+                            </div>
+                        </div>
+
+                        <div class="col-12 mt-2">
+                            <button type="submit" class="btn-submit btn w-100" id="submit-btn" disabled>
+                                Invia richiesta di prenotazione
+                            </button>
+                            <p class="text-center mt-2" style="font-size:.78rem;color:var(--text-muted)">
+                                Nessun pagamento anticipato richiesto
+                            </p>
+                        </div>
+
+                    </form>
+                </div>
+
+            </div>
+
+            <!-- Sidebar info -->
+            <div class="col-lg-4 mt-4 mt-lg-0">
+
+                <div class="card-1 s-brand-soft animate-on-scroll mb-4">
+                    <h4 class="mb-3" style="font-family:var(--font-display);font-size:1.15rem">Cosa è incluso</h4>
+                    <ul class="checklist">
+                        <li>Biancheria da letto e bagno</li>
+                        <li>Aria condizionata e Wi-Fi</li>
+                        <li>Giardino privato con doccia</li>
+                        <li>Cucina completamente attrezzata</li>
+                        <li>Posto auto gratuito nelle vicinanze</li>
+                        <li>Check-in flessibile</li>
+                    </ul>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</section>
+
+{% endblock %}
+
+{% block script %}
+<!-- FLATPICKR -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+<script src="https://cdn.jsdelivr.net/npm/flatpickr/dist/l10n/it.js"></script>
+
+<style>
+/* Flatpickr skin coerente */
+.flatpickr-calendar { font-family: var(--font-body); border-radius: var(--radius-md); border: 0.5px solid var(--brand-lavender); box-shadow: var(--shadow-md); }
+.flatpickr-day.selected, .flatpickr-day.selected:hover { background: var(--brand-mid); border-color: var(--brand-mid); }
+.flatpickr-day.inRange { background: var(--brand-fog); border-color: var(--brand-wash); }
+.flatpickr-day.startRange, .flatpickr-day.endRange { background: var(--brand-mid); border-color: var(--brand-mid); }
+.flatpickr-day:hover { background: var(--brand-fog); }
+.flatpickr-day.disabled-date { background: #FCE4EC !important; color: #B71C4A !important; cursor: not-allowed !important; }
+.flatpickr-months .flatpickr-month { background: var(--brand-fog); }
+.flatpickr-current-month { color: var(--brand-deep); font-family: var(--font-display); }
+.flatpickr-weekday { color: var(--text-muted); font-size: .78rem; }
+</style>
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+    const form = document.getElementById("prenota");
+    const submitBtn = document.getElementById("submit-btn");
+    const fields = form.querySelectorAll("input, select");
+
+    // Ripristina valori salvati
+    fields.forEach(field => {
+        const saved = localStorage.getItem("form_" + field.name);
+        if (saved !== null) field.value = saved;
+        field.addEventListener("input", () => {
+            localStorage.setItem("form_" + field.name, field.value);
+            validateForm();
+        });
+    });
+
+    function validateForm() {
+        const allFilled = [...form.querySelectorAll("[required]")].every(i => i.value.trim() !== "");
+        submitBtn.disabled = !allFilled;
+    }
+    validateForm();
+
+    form.addEventListener("submit", () => {
+        fields.forEach(f => localStorage.removeItem("form_" + f.name));
+        submitBtn.classList.add("btn-loading");
+        submitBtn.textContent = "Invio in corso...";
+    });
+});
+
+const MIN_NOTTI = 5;
+
+// Slot occupati generati dal server: unione di iCal personale + esterni
+const busyRanges = {{ busyRanges|safe }};
+
+function isBusy(date) {
+    const y = date.getFullYear();
+    const m = String(date.getMonth() + 1).padStart(2, "0");
+    const d = String(date.getDate()).padStart(2, "0");
+    const current = `${y}-${m}-${d}`;
+    return busyRanges.some(([start, end]) => current >= start && current <= end);
+}
+
+function updateStayPreview() {
+    const s = startPicker.selectedDates[0];
+    const e = endPicker.selectedDates[0];
+    const preview = document.getElementById("stay-preview");
+    const stayText = document.getElementById("stay-text");
+    if (s && e) {
+        const nights = Math.round((e - s) / (1000 * 60 * 60 * 24));
+        const fmt = d => d.toLocaleDateString("it-IT", { day: "numeric", month: "long", year: "numeric" });
+        stayText.textContent = `${fmt(s)} → ${fmt(e)} (${nights} nott${nights === 1 ? 'e' : 'i'})`;
+        preview.style.display = "block";
+    } else {
+        preview.style.display = "none";
+    }
+}
+
+const startPicker = flatpickr("#start-date", {
+    dateFormat: "d/m/Y",
+    minDate: "today",
+    locale: "it",
+    disable: [date => isBusy(date)],
+    onDayCreate(_, __, ___, el) {
+        if (isBusy(el.dateObj)) el.classList.add("disabled-date");
+    },
+    onChange() {
+        const s = startPicker.selectedDates[0];
+        if (!s) return;
+
+        // Minimo MIN_NOTTI notti
+        const minEnd = new Date(s.getTime() + MIN_NOTTI * 86400000);
+
+        // Primo giorno occupato dopo l'inizio
+        const maxEnd = (function() {
+            const check = new Date(s.getTime() + 86400000);
+            for (let i = 0; i < 365; i++) {
+                if (isBusy(check)) return check;
+                check.setDate(check.getDate() + 1);
+            }
+            return null;
+        })();
+
+        endPicker.set("minDate", minEnd);
+        endPicker.set("maxDate", maxEnd ?? null);
+
+        // Reset end date se non rispetta i nuovi limiti
+        const e = endPicker.selectedDates[0];
+        if (e && (e < minEnd || (maxEnd && e >= maxEnd))) {
+            endPicker.clear();
+            updateStayPreview();
+        }
+
+        updateStayPreview();
+        document.querySelector("[name='start-date']").dispatchEvent(new Event("input"));
+    }
+});
+    
+const endPicker = flatpickr("#end-date", {
+    dateFormat: "d/m/Y",
+    minDate: "today",
+    locale: "it",
+    disable: [date => isBusy(date)],
+    onDayCreate(_, __, ___, el) {
+        if (isBusy(el.dateObj)) el.classList.add("disabled-date");
+    },
+    onChange() {
+        updateStayPreview();
+        document.querySelector("[name='end-date']").dispatchEvent(new Event("input"));
+    }
+});
+</script>
+{% endblock %}

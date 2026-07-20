@@ -1,0 +1,260 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Dintorni – Il Nido di Anita{% endblock %}
+{% block meta_description %}Guida alle migliori esperienze a Cupra Marittima: enogastronomia, borghi, natura e cultura a pochi minuti dal Nido di Anita.{% endblock %}
+
+
+{% block nav %}
+<div class="text-center d-none d-md-block">
+    <div class="filters-wrapper d-flex justify-content-center">
+        <button class="filter nav-link" data-filter="enogastronomia">Enogastronomico</button>
+        <button class="filter nav-link" data-filter="paesi">Paesi storici</button>
+        <button class="filter nav-link" data-filter="cultura">Cultura</button>
+        <button class="filter nav-link" data-filter="natura">Natura</button>
+        <button class="filter nav-link" data-filter="serata">Serata</button>
+    </div>
+</div>
+{% endblock %}
+
+{% block content %}
+<section class="hero hero--compact text-center">
+    <div class="container">
+        <h1 class="hero__title">Esplora Cupra Marittima e la Riviera delle Palme</h1>
+        <p class="hero__text mx-auto">
+            Un itinerario selezionato per chi soggiorna da noi: luoghi autentici, panorami che emozionano,
+            borghi sospesi nel tempo, cantine d’eccellenza e sapori che raccontano la nostra terra.
+            Ogni proposta è scelta per qualità, atmosfera e vicinanza alla casa.
+        </p>
+    </div>
+</section>
+
+<section class="section-1 bg-perl">
+    <div class="container">
+
+        <!-- CARD 1 -->
+        <div class="card-2 animate-on-scroll  animate-on-scroll s-white mb-4 fade-card" data-cat="paesi">
+            <div class="row g-0 align-items-stretch">
+                <div class="col-12 col-md-5">
+                    <img src="https://dynamic-media-cdn.tripadvisor.com/media/photo-o/15/c4/67/2f/visitare-marano-e-sentirsi.jpg?w=900&h=-1&s=1"
+                         alt="Cupra Alta"
+                         class="img-fluid img-ph--lg"
+                         style="object-fit: cover; width: 100%; height: 100%;">
+                </div>
+                <div class="col-12 col-md-7 ps-md-4 pt-3 pt-md-0">
+                    <h3 class="fw-bold text-brand">Cupra Alta – Il borgo sospeso sul mare</h3>
+                    <p>
+                        Un piccolo gioiello medievale che domina la costa dall'alto. Vicoli silenziosi, archi in pietra,
+                        scorci che sembrano dipinti e una vista sul mare che cambia colore a ogni ora del giorno.
+                        Perfetto per una passeggiata lenta e fotografica.
+                    </p>
+                    <span class="tag s-tag-brand">6 min</span>
+                    <a href="https://www.google.com/maps/dir/?api=1&destination=Cupra+Alta"
+                       target="_blank" class="btn btn-primary mt-2">Apri in Maps</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- CARD 2 (reversed su desktop) -->
+        <div class="card-2 animate-on-scroll  animate-on-scroll s-white mb-4 fade-card" data-cat="paesi">
+            <div class="row g-0 align-items-stretch flex-md-row-reverse">
+                <div class="col-12 col-md-5">
+                    <img src="https://www.mycornerofitaly.com/wp-content/uploads/2019/07/DSC06712b.jpg"
+                         alt="Torre di Palme"
+                         class="img-fluid img-ph--lg"
+                         style="object-fit: cover; width: 100%; height: 100%;">
+                </div>
+                <div class="col-12 col-md-7 pe-md-4 pt-3 pt-md-0">
+                    <h3 class="fw-bold text-brand">Torre di Palme – Il balcone più romantico delle Marche</h3>
+                    <p>
+                        Uno dei borghi più suggestivi d'Italia: terrazze panoramiche sul mare, case in mattoni fiorite,
+                        ristorantini intimi e un'atmosfera che profuma di storia e quiete. Ideale al tramonto.
+                    </p>
+                    <span class="tag s-tag-brand">25 min</span>
+                    <a href="https://www.google.com/maps/dir/?api=1&destination=Torre+di+Palme"
+                       target="_blank" class="btn btn-primary mt-2">Apri in Maps</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- CARD 3 -->
+        <div class="card-2 animate-on-scroll  animate-on-scroll s-white mb-4 fade-card" data-cat="paesi">
+            <div class="row g-0 align-items-stretch">
+                <div class="col-12 col-md-5">
+                    <img src="https://www.italiaconibimbi.it/wp-content/uploads/2019/09/Ripatransone-casette-del-centro.jpg"
+                         alt="Ripatransone"
+                         class="img-fluid img-ph--lg"
+                         style="object-fit: cover; width: 100%; height: 100%;">
+                </div>
+                <div class="col-12 col-md-7 ps-md-4 pt-3 pt-md-0">
+                    <h3 class="fw-bold text-brand">Ripatransone – Il vicolo più stretto del mondo</h3>
+                    <p>
+                        Un borgo sorprendente, arroccato tra colline e mare. Qui si trova il vicolo più stretto del mondo:
+                        43 cm di pura curiosità. Il centro storico è un labirinto di pietra, botteghe e panorami infiniti.
+                    </p>
+                    <span class="tag s-tag-brand">22 min</span>
+                    <a href="https://www.google.com/maps/dir/?api=1&destination=Ripatransone"
+                       target="_blank" class="btn btn-primary mt-2">Apri in Maps</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- CARD 4 (reversed su desktop) -->
+        <div class="card-2 animate-on-scroll  animate-on-scroll s-white mb-4 fade-card" data-cat="enogastronomia">
+            <div class="row g-0 align-items-stretch flex-md-row-reverse">
+                <div class="col-12 col-md-5">
+                    <img src="https://lh3.googleusercontent.com/p/AF1QipNIlR8J-ZZGkfVrOBGv9PjfNEkGiufiqM8lb28M=s1360-w1360-h1020-rw"
+                         alt="Cantina vino"
+                         class="img-fluid img-ph--lg"
+                         style="object-fit: cover; width: 100%; height: 100%;">
+                </div>
+                <div class="col-12 col-md-7 pe-md-4 pt-3 pt-md-0">
+                    <h3 class="fw-bold text-brand">Cantina Ciù Ciù – Degustazione tra le colline</h3>
+                    <p>
+                        Una delle cantine simbolo del Piceno: vini biologici, colline morbide e degustazioni guidate
+                        che raccontano la storia del territorio. Un'esperienza autentica per chi ama il vino vero.
+                    </p>
+                    <span class="tag s-tag-brand">22 min</span>
+                    <a href="https://www.google.com/maps/dir/?api=1&destination=Cantina+Ciù+Ciù"
+                       target="_blank" class="btn btn-primary mt-2">Apri in Maps</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- CARD 5 -->
+        <div class="card-2 animate-on-scroll  animate-on-scroll s-white mb-4 fade-card" data-cat="enogastronomia">
+            <div class="row g-0 align-items-stretch">
+                <div class="col-12 col-md-5">
+                    <img src="https://lh3.googleusercontent.com/p/AF1QipNSWhT-5VLvi-AIAlqheC5OavfA4Y7ZoYr2RYJ6=s1360-w1360-h1020-rw"
+                         alt="Vigneti"
+                         class="img-fluid img-ph--lg"
+                         style="object-fit: cover; width: 100%; height: 100%;">
+                </div>
+                <div class="col-12 col-md-7 ps-md-4 pt-3 pt-md-0">
+                    <h3 class="fw-bold text-brand">Tenuta Cocci Grifoni – Vini e calanchi</h3>
+                    <p>
+                        Una terrazza naturale affacciata sui calanchi. Vini eleganti, atmosfera familiare e degustazioni
+                        che uniscono natura e tradizione. Perfetta per un pomeriggio lento e panoramico.
+                    </p>
+                    <span class="tag s-tag-brand">28 min</span>
+                    <a href="https://www.google.com/maps/dir/?api=1&destination=Tenuta+Cocci+Grifoni"
+                       target="_blank" class="btn btn-primary mt-2">Apri in Maps</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- CARD 6 (reversed su desktop) -->
+        <div class="card-2 animate-on-scroll  animate-on-scroll s-white mb-4 fade-card" data-cat="cultura">
+            <div class="row g-0 align-items-stretch flex-md-row-reverse">
+                <div class="col-12 col-md-5">
+                    <img src="https://media.cultura.gov.it/mibac/files/boards/388a5474724a15af0ace7a40ab3301de/Marche/Ascoli%20Piceno/Cupra%20Marittima,%20%20Museo%20malacologico%20piceno.jpg"
+                         alt="Museo Malacologico"
+                         class="img-fluid img-ph--lg"
+                         style="object-fit: cover; width: 100%; height: 100%;">
+                </div>
+                <div class="col-12 col-md-7 pe-md-4 pt-3 pt-md-0">
+                    <h3 class="fw-bold text-brand">Museo Malacologico – Un viaggio tra i mari del mondo</h3>
+                    <p>
+                        Oltre 900.000 conchiglie provenienti da ogni angolo del pianeta. Un museo unico, sorprendente,
+                        perfetto per famiglie e curiosi. Ogni sala è un piccolo mondo marino.
+                    </p>
+                    <span class="tag s-tag-brand">3 min</span>
+                    <a href="https://www.google.com/maps/dir/?api=1&destination=Museo+Malacologico"
+                       target="_blank" class="btn btn-primary mt-2">Apri in Maps</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- CARD 7 -->
+        <div class="card-2 animate-on-scroll  animate-on-scroll s-white mb-4 fade-card" data-cat="natura">
+            <div class="row g-0 align-items-stretch">
+                <div class="col-12 col-md-5">
+                    <img src="https://www.bimtronto-ap.it/wp-content/uploads/2017/04/riserva-naturale-regionale-sentina.jpg"
+                         alt="Riserva Sentina"
+                         class="img-fluid img-ph--lg"
+                         style="object-fit: cover; width: 100%; height: 100%;">
+                </div>
+                <div class="col-12 col-md-7 ps-md-4 pt-3 pt-md-0">
+                    <h3 class="fw-bold text-brand">Riserva Naturale della Sentina – Silenzio e natura</h3>
+                    <p>
+                        Un'oasi incontaminata tra mare e lagune. Perfetta per birdwatching, fotografie e passeggiate
+                        nella quiete più totale. Un angolo di natura pura.
+                    </p>
+                    <span class="tag s-tag-brand">18 min</span>
+                    <a href="https://www.google.com/maps/dir/?api=1&destination=Riserva+Naturale+della+Sentina"
+                       target="_blank" class="btn btn-primary mt-2">Apri in Maps</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- CARD 8 (reversed su desktop) -->
+        <div class="card-2 animate-on-scroll  animate-on-scroll s-white mb-4 fade-card" data-cat="serata">
+            <div class="row g-0 align-items-stretch flex-md-row-reverse">
+                <div class="col-12 col-md-5">
+                    <img src="https://fai-platform.imgix.net/uploads/12348587-4012-40ca-9456-3719f0553aca.jpg"
+                         alt="Lungomare"
+                         class="img-fluid img-ph--lg"
+                         style="object-fit: cover; width: 100%; height: 100%;">
+                </div>
+                <div class="col-12 col-md-7 pe-md-4 pt-3 pt-md-0">
+                    <h3 class="fw-bold text-brand">Passeggiata sul Lungomare – Gelato e tramonto</h3>
+                    <p>
+                        Palme, mare calmo e luci soffuse. Perfetto per un gelato, un aperitivo o una camminata
+                        al tramonto con il suono delle onde.
+                    </p>
+                    <span class="tag s-tag-brand">4 min</span>
+                    <a href="https://www.google.com/maps/dir/?api=1&destination=Lungomare+San+Benedetto+del+Tronto"
+                       target="_blank" class="btn btn-primary mt-2">Apri in Maps</a>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</section>
+{% endblock %}
+
+{% block script %}
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+
+    const filters = document.querySelectorAll(".filter");
+    const cards = document.querySelectorAll(".fade-card");
+    let activeFilter = null;
+
+    filters.forEach(btn => {
+        btn.addEventListener("click", () => {
+            const category = btn.getAttribute("data-filter");
+
+            if (activeFilter === category) {
+                activeFilter = null;
+                filters.forEach(b => b.classList.remove("btn-nav-cta"));
+                cards.forEach(card => {
+                    card.style.display = "flex";
+                    card.classList.remove("fade-out");
+                    card.classList.add("fade-in");
+                });
+                return;
+            }
+
+            activeFilter = category;
+            filters.forEach(b => b.classList.remove("btn-nav-cta"));
+            btn.classList.add("btn-nav-cta");
+
+            cards.forEach(card => {
+                const cat = card.getAttribute("data-cat");
+                if (cat === category) {
+                    card.style.display = "flex";
+                    card.classList.remove("fade-out");
+                    card.classList.add("fade-in");
+                } else {
+                    card.classList.remove("fade-in");
+                    card.classList.add("fade-out");
+                    setTimeout(() => card.style.display = "none", 200);
+                }
+            });
+        });
+    });
+
+});
+</script>
+{% endblock %}

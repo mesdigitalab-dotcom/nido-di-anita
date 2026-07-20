@@ -1,0 +1,70 @@
+{% extends "base.html" %}
+{% block title %}Registrati – {{ block.super }}{% endblock %}
+
+{% block content %}
+<div class="container py-5">
+  <div class="row justify-content-center">
+    <div class="col-12 col-sm-10 col-md-7 col-lg-5">
+
+      <div class="card shadow-sm border-0 rounded-4 p-4">
+        <h1 class="h4 fw-semibold text-center mb-1">Crea un account</h1>
+        <p class="text-muted text-center small mb-4">Compila i campi per registrarti.</p>
+
+        {% if form.non_field_errors %}
+          <div class="alert alert-danger rounded-3 py-2 small">{{ form.non_field_errors }}</div>
+        {% endif %}
+
+        <form method="post" novalidate>
+          {% csrf_token %}
+
+          <div class="row g-3 mb-3">
+            <div class="col-6">
+              <label class="form-label fw-medium">Nome</label>
+              {{ form.first_name }}
+              {% if form.first_name.errors %}<div class="invalid-feedback d-block">{{ form.first_name.errors.0 }}</div>{% endif %}
+            </div>
+            <div class="col-6">
+              <label class="form-label fw-medium">Cognome</label>
+              {{ form.last_name }}
+              {% if form.last_name.errors %}<div class="invalid-feedback d-block">{{ form.last_name.errors.0 }}</div>{% endif %}
+            </div>
+          </div>
+
+          <div class="mb-3">
+            <label class="form-label fw-medium">Email</label>
+            {{ form.email }}
+            {% if form.email.errors %}<div class="invalid-feedback d-block">{{ form.email.errors.0 }}</div>{% endif %}
+          </div>
+
+          <div class="mb-3">
+            <label class="form-label fw-medium">Telefono <span class="text-muted fw-normal">(opzionale)</span></label>
+            {{ form.numero }}
+            {% if form.numero.errors %}<div class="invalid-feedback d-block">{{ form.numero.errors.0 }}</div>{% endif %}
+          </div>
+
+          <div class="mb-3">
+            <label class="form-label fw-medium">Password</label>
+            {{ form.password1 }}
+            {% if form.password1.errors %}<div class="invalid-feedback d-block">{{ form.password1.errors.0 }}</div>{% endif %}
+          </div>
+
+          <div class="mb-4">
+            <label class="form-label fw-medium">Conferma password</label>
+            {{ form.password2 }}
+            {% if form.password2.errors %}<div class="invalid-feedback d-block">{{ form.password2.errors.0 }}</div>{% endif %}
+          </div>
+
+          <button type="submit" class="btn btn-primary w-100">Crea account</button>
+        </form>
+
+        <hr class="my-4">
+        <p class="text-center small mb-0">
+          Hai già un account?
+          <a href="{% url 'accounts:login' %}" class="fw-medium">Accedi</a>
+        </p>
+      </div>
+
+    </div>
+  </div>
+</div>
+{% endblock %}

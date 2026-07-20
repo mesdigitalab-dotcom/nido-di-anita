@@ -1,0 +1,45 @@
+{% extends "admin/base_site.html" %}
+
+{% block content %}
+<h1>Carica immagini nella galleria</h1>
+
+<p>Seleziona una o più immagini. Tieni premuto <kbd>Ctrl</kbd> (o <kbd>⌘</kbd> su Mac) per selezionarne più d'una contemporaneamente.</p>
+
+<form method="post" enctype="multipart/form-data" id="uploadForm">
+    {% csrf_token %}
+    <div style="margin-bottom:16px;">
+        <input
+            type="file"
+            name="images"
+            multiple
+            accept="image/*"
+            id="imageInput"
+            style="border:2px dashed #999; padding:20px; width:420px; border-radius:10px; cursor:pointer; display:block;"
+        >
+        <p id="fileCount" style="margin-top:8px; color:#555; font-size:0.9em;"></p>
+    </div>
+    <button type="submit" class="button default" id="submitBtn">Carica immagini</button>
+</form>
+
+<script>
+const input = document.getElementById('imageInput');
+const count = document.getElementById('fileCount');
+const btn   = document.getElementById('submitBtn');
+
+input.addEventListener('change', function() {
+    const n = this.files.length;
+    if (n === 0) {
+        count.textContent = '';
+        btn.textContent = 'Carica immagini';
+    } else {
+        count.textContent = n === 1 ? '1 immagine selezionata' : n + ' immagini selezionate';
+        btn.textContent   = n === 1 ? 'Carica 1 immagine' : 'Carica ' + n + ' immagini';
+    }
+});
+
+document.getElementById('uploadForm').addEventListener('submit', function() {
+    btn.textContent = 'Caricamento in corso…';
+    btn.disabled = true;
+});
+</script>
+{% endblock %}
