@@ -2,8 +2,10 @@ from django.contrib import admin
 from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
+from app.views import robots_txt
 
 urlpatterns = [
+    path("robots.txt", robots_txt),
     path('admin/', admin.site.urls),
     path('account/', include('accounts.urls', namespace='accounts')),
     path('', include('app.urls')),
