@@ -10,6 +10,7 @@ from django.urls import reverse
 from django.utils import timezone
 from django.views.decorators.csrf import csrf_exempt
 from django.core.mail import EmailMultiAlternatives
+from django.conf import settings
 
 from .apps import get_ical_manager
 from .models import Prenotazioni, GalleryImage, Recensioni, TokenPrenotazione
@@ -137,7 +138,7 @@ def send_mail(request):
         msg = EmailMultiAlternatives(
             subject="Nuova Prenotazione",
             body="Il tuo client email non supporta HTML.",
-            from_email="mesdigitalab.notifiche@gmail.com",
+            from_email=settings.DEFAULT_FROM_EMAIL,
             to=["nidodianita@gmail.com"],
         )
         msg.attach_alternative(html_content, "text/html")
@@ -189,7 +190,7 @@ def approva_prenotazione(request):
         msg = EmailMultiAlternatives(
             subject="Prenotazione confermata",
             body="Il tuo client email non supporta HTML.",
-            from_email="mesdigitalab.notifiche@gmail.com",
+            from_email=settings.DEFAULT_FROM_EMAIL,
             to=[utente.email],
         )
         msg.attach_alternative(html_content, "text/html")
@@ -242,7 +243,7 @@ def rifiuta_prenotazione(request):
         msg = EmailMultiAlternatives(
             subject="Prenotazione rifiutata",
             body="Il tuo client email non supporta HTML.",
-            from_email="mesdigitalab.notifiche@gmail.com",
+            from_email=settings.DEFAULT_FROM_EMAIL,
             to=[utente.email],
         )
         msg.attach_alternative(html_content, "text/html")
