@@ -48,6 +48,7 @@ INSTALLED_APPS = [
     'app',
     'accounts',
     'storages',
+    'anymail',
 ]
 
 AUTH_USER_MODEL = 'accounts.Utente'
@@ -179,14 +180,19 @@ MEDIA_ROOT = BASE_DIR / 'media'  # usato solo quando R2 non è configurato
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # ── Email ──────────────────────────────────────────────────────────────────────
+# Render (piano free) blocca le connessioni SMTP in uscita: usiamo un backend
+# HTTP (Anymail + Resend) invece di django.core.mail.backends.smtp.
+# Sia la API key che il mittente arrivano da variabili d'ambiente: nessun
+# segreto e nessun indirizzo hardcoded nel codice.
 
-EMAIL_BACKEND       = "django.core.mail.backends.smtp.EmailBackend"
-EMAIL_HOST          = os.environ.get("EMAIL_HOST", "smtp.gmail.com")
-EMAIL_PORT          = int(os.environ.get("EMAIL_PORT", "587"))
-EMAIL_USE_TLS       = env_bool("EMAIL_USE_TLS", default=True)
-EMAIL_HOST_USER     = os.environ.get("EMAIL_HOST_USER", "")
-EMAIL_HOST_PASSWORD = os.environ.get("EMAIL_HOST_PASSWORD", "")
-DEFAULT_FROM_EMAIL  = os.environ.get("DEFAULT_FROM_EMAIL", EMAIL_HOST_USER)
+EMAIL_BACKEND = "anymail.backends.resend.EmailBackend"
+
+ANYMAIL = {
+    "RESEND_API_KEY": os.environ["RESEND_API_KEY"],  # obbligatoria: l'app non parte senza
+}
+
+DEFAULT_FROM_EMAIL = os.environ["DEFAULT_FROM_EMAIL"]  # es. notifiche@tuodominio.it
+
 
 # ── iCal ───────────────────────────────────────────────────────────────────────
 
