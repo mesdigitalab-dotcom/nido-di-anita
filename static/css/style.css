@@ -983,7 +983,7 @@ a:hover{ color:var(--brand-deep); }
    ============================================================ */
 .footer{
   position:relative;
-  background:var(--brand-night);
+  background:var(--gradient-hero);
   color:rgba(255,255,255,.82);
 }
 .footer .container{ position:relative; }
