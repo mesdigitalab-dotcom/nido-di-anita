@@ -17,6 +17,16 @@ from .models import Prenotazioni, GalleryImage, Recensioni, TokenPrenotazione
 import json
 import secrets
 
+def robots_txt(request):
+    lines = [
+        "User-agent: *",
+        "Allow: /",
+        "Disallow: /account/",
+        "",
+        "Sitemap: https://nido-di-anita.onrender.com/sitemap.xml",
+    ]
+    return HttpResponse("\n".join(lines), content_type="text/plain")
+
 User = get_user_model()
 
 
