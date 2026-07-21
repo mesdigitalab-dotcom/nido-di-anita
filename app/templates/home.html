@@ -126,12 +126,17 @@
             </div>
 
             <div class="col-lg-6 animate-on-scroll">
-                <a href="https://www.google.com/maps/dir/?api=1&destination=Via+Trento+14,+Cupra+Marittima" target="_blank">
-                    <div class="map-card">
-                        <img src="{% static 'img/maps.png' %}" alt="Mappa posizione Il Nido di Anita">
-                        <div class="map-card__footer">Via Trento 14, Cupra Marittima — clicca per aprire maps</div>
-                    </div>
-                </a>
+                <div class="map-card">
+                    <iframe
+                        src="https://www.google.com/maps?q=Via+Trento+14,+Cupra+Marittima&output=embed"
+                        width="100%" height="320" style="border:0;" loading="lazy"
+                        referrerpolicy="no-referrer-when-downgrade"
+                        title="Mappa posizione Il Nido di Anita">
+                    </iframe>
+                    <a href="https://www.google.com/maps/dir/?api=1&destination=Via+Trento+14,+Cupra+Marittima" target="_blank" class="map-card__footer d-block text-decoration-none">
+                        Via Trento 14, Cupra Marittima — clicca per aprire in Google Maps
+                    </a>
+                </div>
             </div>
 
         </div>
@@ -328,4 +333,3 @@ function closeFaq() {
 }
 </script>
 {% endblock %}
-
