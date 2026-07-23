@@ -9,7 +9,8 @@ urlpatterns = [
     path('casa/', views.casa, name='casa'),
     
     # Form prenotazione / email
-    path('send_mail/', views.send_mail, name="send_mail"),
+    path('send_mail/', views.test, name="send_mail"),
+    #path('send_mail/', views.send_mail, name="send_mail"),
     path('prenotazione/approva/', views.approva_prenotazione, name="approva_prenotazione"),
     path('prenotazione/rifiuta/', views.rifiuta_prenotazione, name="rifiuta_prenotazione"),
 
