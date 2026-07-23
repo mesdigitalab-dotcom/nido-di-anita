@@ -182,7 +182,7 @@
                style="padding:.9rem;border-radius:var(--radius-sm);border:.5px solid var(--brand-lavender);background:var(--brand-pearl)">
             <div class="d-flex justify-content-between align-items-baseline mb-1">
               <span style="font-size:.84rem;font-weight:500;color:var(--brand-deep)">{{ r.nome_recensore }}</span>
-              <span style="font-size:.74rem;color:var(--text-light)">{{ r.prenotazione }}</span>
+              <span style="font-size:.74rem;color:var(--text-body)">{{ r.prenotazione }}</span>
             </div>
             <div style="color:#E8A030;font-size:.8rem;letter-spacing:1px;margin-bottom:.3rem">
               {% for i in "12345" %}{% if forloop.counter <= r.valutazione %}★{% else %}☆{% endif %}{% endfor %}
@@ -191,9 +191,9 @@
             <p style="font-size:.8rem;color:var(--text-body);line-height:1.6;margin:0">{{ r.testo }}</p>
           </div>
           {% empty %}
-          <p style="font-size:.85rem;color:var(--text-light);text-align:center;padding:1rem 0">Ancora nessuna recensione.</p>
+          <p style="font-size:.85rem;color:var(--brand-deep);text-align:center;padding:1rem 0">Ancora nessuna recensione.</p>
           {% endfor %}
-          <p id="emptyNote" style="display:none;font-size:.84rem;color:var(--text-light);text-align:center;padding:1rem 0">
+          <p id="emptyNote" style="display:none;font-size:.84rem;color:var(--brand-deep);text-align:center;padding:1rem 0">
             Nessuna recensione con questo punteggio.
           </p>
         </div>
