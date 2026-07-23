@@ -33,10 +33,8 @@
 =========================== -->
 <section class="section-2 bg-pearl">
   <div class="container-xl">
-
     <div class="gallery-grid animate-on-scroll">
-
-      <!-- Prima immagine grande -->
+      <!-- Prima immagine grande, a sinistra -->
       <div class="gallery-grid__main" onclick="openLightbox(0)">
         <img src="{% if gallery_preview.0 %}{{ gallery_preview.0.image.url }}{% else %}https://images.unsplash.com/photo-1499793983690-e29da59ef1c2?w=900&q=80{% endif %}"
              alt="Foto della casa vacanze – immagine 1"
@@ -45,33 +43,34 @@
         <div class="gallery-overlay"></div>
       </div>
 
-      <!-- Secondaria 1 -->
-      <div class="gallery-grid__secondary" onclick="openLightbox(1)">
-        <img src="{% if gallery_preview.1 %}{{ gallery_preview.1.image.url }}{% else %}https://images.unsplash.com/photo-1590490360182-c33d57733427?w=600&q=80{% endif %}"
-             alt="Foto della casa vacanze – immagine 2"
-             class="gallery-img"
-             loading="lazy"/>
-        <div class="gallery-overlay"></div>
-      </div>
-
-      <!-- Secondaria 2 -->
-     <div class="gallery-grid__secondary" style="position:relative" onclick="openLightbox(2)">
+      <!-- Terza immagine, in alto a destra (sinistra del blocco destro) -->
+      <div class="gallery-grid__top-left" onclick="openLightbox(2)">
         <img src="{% if gallery_preview.2 %}{{ gallery_preview.2.image.url }}{% else %}https://images.unsplash.com/photo-1582268611958-ebfd161ef9cf?w=600&q=80{% endif %}"
              alt="Foto della casa vacanze – immagine 3"
              class="gallery-img"
              loading="lazy"/>
         <div class="gallery-overlay"></div>
+      </div>
 
-     <div class="gallery-grid__bottom" onclick="openLightbox(3)">
+      <!-- Quarta immagine, in alto a destra (destra del blocco destro) -->
+      <div class="gallery-grid__top-right" onclick="openLightbox(3)">
         <img src="{% if gallery_preview.3 %}{{ gallery_preview.3.image.url }}{% else %}https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?w=900&q=80{% endif %}"
              alt="Foto della casa vacanze – immagine 4"
              class="gallery-img"
              loading="lazy"/>
         <div class="gallery-overlay"></div>
       </div>
-     
-          </div>
-     </div>
+
+      <!-- Seconda immagine, in basso a destra, larga 2 colonne -->
+      <div class="gallery-grid__bottom" onclick="openLightbox(1)">
+        <img src="{% if gallery_preview.1 %}{{ gallery_preview.1.image.url }}{% else %}https://images.unsplash.com/photo-1590490360182-c33d57733427?w=600&q=80{% endif %}"
+             alt="Foto della casa vacanze – immagine 2"
+             class="gallery-img"
+             loading="lazy"/>
+        <div class="gallery-overlay"></div>
+      </div>
+    </div>
+  </div>
 </section>
 
 
