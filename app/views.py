@@ -18,6 +18,31 @@ from .models import Prenotazioni, GalleryImage, Recensioni, TokenPrenotazione
 import json
 import secrets
 
+User = get_user_model()
+
+
+def invia_email(subject, template_name, context, to, from_email=None,
+                 plain_text="Il tuo client email non supporta HTML."):
+    """
+    Punto unico di invio email. Usa qualunque EMAIL_BACKEND sia configurato in
+    settings.py (attualmente anymail + Resend, quindi via HTTP e non SMTP:
+    su Render il traffico SMTP in uscita è bloccato, l'API HTTP no).
+    """
+    if isinstance(to, str):
+        to = [to]
+
+    html_content = render_to_string(template_name, context)
+
+    msg = EmailMultiAlternatives(
+        subject=subject,
+        body=plain_text,
+        from_email=from_email or settings.DEFAULT_FROM_EMAIL,
+        to=to,
+    )
+    msg.attach_alternative(html_content, "text/html")
+    msg.send()
+
+
 def robots_txt(request):
     lines = [
         "User-agent: *",
@@ -27,8 +52,6 @@ def robots_txt(request):
         "Sitemap: https://nido-di-anita.onrender.com/sitemap.xml",
     ]
     return HttpResponse("\n".join(lines), content_type="text/plain")
-
-User = get_user_model()
 
 
 def home(request):
@@ -48,7 +71,6 @@ def casa(request):
     totale = recensioni.count()
     avg = round(sum(r.valutazione for r in recensioni) / totale, 1) if totale else 0
 
-    # in casa()
     soggiorni_recensibili = []
     soggiorno_recensibile = None
     if request.user.is_authenticated:
@@ -108,7 +130,6 @@ def send_mail(request):
         data_fine   = request.GET.get("end-date")
         user        = request.user
 
-        # Crea e salva il token nel DB
         token = secrets.token_urlsafe(32)
         TokenPrenotazione.objects.create(token=token)
 
@@ -121,28 +142,24 @@ def send_mail(request):
             + f"?start={data_inizio}&end={data_fine}&id={user.id}&token={token}"
         )
 
-        html_content = render_to_string("email_templates/mail_prenotazione.html", {
-            "telefono":   user.numero,
-            "email":      user.email,
-            "nome":       user,
-            "note":       note,
-            "persone":    persone,
-            "data_inizio": data_inizio,
-            "data_fine":  data_fine,
-            "id":         user.id,
-            "approva_url": approva_url,
-            "rifiuta_url": rifiuta_url,
-            "logo": "ciao",
-        })
-
-        msg = EmailMultiAlternatives(
+        invia_email(
             subject="Nuova Prenotazione",
-            body="Il tuo client email non supporta HTML.",
-            from_email=settings.DEFAULT_FROM_EMAIL,
+            template_name="email_templates/mail_prenotazione.html",
+            context={
+                "telefono":    user.numero,
+                "email":       user.email,
+                "nome":        user,
+                "note":        note,
+                "persone":     persone,
+                "data_inizio": data_inizio,
+                "data_fine":   data_fine,
+                "id":          user.id,
+                "approva_url": approva_url,
+                "rifiuta_url": rifiuta_url,
+                "logo":        "ciao",
+            },
             to=["nidodianita@gmail.com"],
         )
-        msg.attach_alternative(html_content, "text/html")
-        msg.send()
 
         return redirect('home')
 
@@ -179,22 +196,17 @@ def approva_prenotazione(request):
             fine=end_dt,
         )
 
-        html_content = render_to_string("email_templates/mail_conferma.html", {
-            "start": start_dt.strftime("%d/%m/%Y"),
-            "end":   end_dt.strftime("%d/%m/%Y"),
-            "nome":  utente.first_name or utente.email,
-            "logo": "ciao",
-            
-        })
-
-        msg = EmailMultiAlternatives(
+        invia_email(
             subject="Prenotazione confermata",
-            body="Il tuo client email non supporta HTML.",
-            from_email=settings.DEFAULT_FROM_EMAIL,
-            to=[utente.email],
+            template_name="email_templates/mail_conferma.html",
+            context={
+                "start": start_dt.strftime("%d/%m/%Y"),
+                "end":   end_dt.strftime("%d/%m/%Y"),
+                "nome":  utente.first_name or utente.email,
+                "logo":  "ciao",
+            },
+            to=utente.email,
         )
-        msg.attach_alternative(html_content, "text/html")
-        msg.send()
 
         return HttpResponse("""
             <html><body>
@@ -217,7 +229,6 @@ def rifiuta_prenotazione(request):
         if not token or not start_str or not end_str:
             return HttpResponse(status=400)
 
-        # Verifica e brucia il token atomicamente
         with transaction.atomic():
             obj = TokenPrenotazione.objects.filter(token=token).first()
             if not obj:
@@ -232,22 +243,18 @@ def rifiuta_prenotazione(request):
         end_dt   = datetime.strptime(end_str,   "%d/%m/%Y")
         utente   = User.objects.get(id=utente_id)
 
-        html_content = render_to_string("email_templates/mail_rifiuto.html", {
-            "start": start_dt.strftime("%d/%m/%Y"),
-            "end":   end_dt.strftime("%d/%m/%Y"),
-            "nome":  utente.first_name or utente.email,
-            "sito":  request.build_absolute_uri(reverse("home")),
-            "logo": "ciao",
-        })
-
-        msg = EmailMultiAlternatives(
+        invia_email(
             subject="Prenotazione rifiutata",
-            body="Il tuo client email non supporta HTML.",
-            from_email=settings.DEFAULT_FROM_EMAIL,
-            to=[utente.email],
+            template_name="email_templates/mail_rifiuto.html",
+            context={
+                "start": start_dt.strftime("%d/%m/%Y"),
+                "end":   end_dt.strftime("%d/%m/%Y"),
+                "nome":  utente.first_name or utente.email,
+                "sito":  request.build_absolute_uri(reverse("home")),
+                "logo":  "ciao",
+            },
+            to=utente.email,
         )
-        msg.attach_alternative(html_content, "text/html")
-        msg.send()
 
         return HttpResponse("""
             <html><body>
@@ -259,7 +266,7 @@ def rifiuta_prenotazione(request):
         return HttpResponse(f"Formato data non valido: {e}", status=400)
     except Exception as e:
         return HttpResponse(status=500)
-        
+
 def serve_calendario(request):
     content = get_ical_manager().serve_personal_ical()
     return HttpResponse(
