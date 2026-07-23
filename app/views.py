@@ -277,3 +277,19 @@ def serve_calendario(request):
             "Cache-Control": "no-cache, no-store",
         },
     )
+
+def test(request):
+  start_str = request.GET.get("start")
+  end_str   = request.GET.get("end")
+  utente_id = request.GET.get("id")
+  
+  start_dt = datetime.strptime(start_str, "%d/%m/%Y")
+  end_dt   = datetime.strptime(end_str,   "%d/%m/%Y")
+  utente   = User.objects.get(id=utente_id)
+  
+  Prenotazioni.objects.create(
+    cliente=utente,
+    inizio=start_dt,
+    fine=end_dt,
+  )
+  return render(request, 'home.html')
