@@ -48,7 +48,7 @@
         <img src="{% if gallery_preview.2 %}{{ gallery_preview.2.image.url }}{% else %}https://images.unsplash.com/photo-1582268611958-ebfd161ef9cf?w=600&q=80{% endif %}"
              alt="Foto della casa vacanze – immagine 3" class="gallery-img" loading="lazy"/>
         <div class="gallery-overlay"></div>
-        <button class="gallery-count-btn">
+        <button class="gallery-count-btn btn-brand">
           📷 Tutte le {% if gallery_images %}{{ gallery_images|length }}{% else %}18{% endif %} foto
         </button>
       </div>
@@ -92,7 +92,7 @@
             la sera un aperitivo con il tramonto. La cucina completamente attrezzata vi permetterà di sperimentare
             le ricette locali. A pochi minuti a piedi dal centro storico di Taormina e dal Teatro Greco.
           </p>
-          <button class="read-more-btn" id="readMoreBtn" onclick="toggleDesc()">
+          <button class="read-more-btn btn-brand" id="readMoreBtn" onclick="toggleDesc()">
             Leggi di più
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
           </button>
@@ -156,7 +156,7 @@
         <!-- Media -->
         <div class="d-flex align-items-center gap-3 mb-3">
           <span style="font-family:var(--font-display);font-size:2.6rem;font-weight:600;color:var(--brand-deep)" id="avgNum">
-            {{ avg }}
+            {{ avg|default:"0" }}
           </span>
           <div>
             <div style="color:#E8A030;font-size:1rem;letter-spacing:2px">
@@ -167,12 +167,12 @@
         </div>
 
         <!-- Filtri -->
-        <div class="d-flex gap-2 mb-3" id="filterRow" style="overflow-x:auto;flex-wrap:nowrap;padding-bottom:2px">
-          <button class="filter-btn" data-filter="1">★</button>
-          <button class="filter-btn" data-filter="2">★</button>
-          <button class="filter-btn" data-filter="3">★</button>
-          <button class="filter-btn" data-filter="4">★</button>
-          <button class="filter-btn" data-filter="5">★</button>
+        <div class="d-flex gap-2 mb-3" id="filterRow" style="overflow-x:auto;flex-wrap:nowrap;padding-bottom:2px" role="group" aria-label="Filtra recensioni per valutazione">
+          <button type="button" class="filter-btn btn-brand" data-filter="1" aria-pressed="false">★</button>
+          <button type="button" class="filter-btn btn-brand" data-filter="2" aria-pressed="false">★</button>
+          <button type="button" class="filter-btn btn-brand" data-filter="3" aria-pressed="false">★</button>
+          <button type="button" class="filter-btn btn-brand" data-filter="4" aria-pressed="false">★</button>
+          <button type="button" class="filter-btn btn-brand" data-filter="5" aria-pressed="false">★</button>
         </div>
 
         <!-- Lista -->
@@ -191,7 +191,7 @@
             <p style="font-size:.8rem;color:var(--text-body);line-height:1.6;margin:0">{{ r.testo }}</p>
           </div>
           {% empty %}
-          <p style="font-size:.85rem;color:var(--text-light);text-align:center;padding:1rem 0">Ancora nessuna recensione.</p>
+          <p id="noReviewsNote" style="font-size:.85rem;color:var(--text-light);text-align:center;padding:1rem 0">Ancora nessuna recensione.</p>
           {% endfor %}
           <p id="emptyNote" style="display:none;font-size:.84rem;color:var(--text-light);text-align:center;padding:1rem 0">
             Nessuna recensione con questo punteggio.
@@ -201,7 +201,7 @@
         <!-- Bottone + form -->
         {% if soggiorni_recensibili %}
 
-          <button class="btn-booking mt-4" id="writeBtn">Lascia una recensione</button>
+          <button class="btn-brand btn mt-4" id="writeBtn" type="button">Lascia una recensione</button>
 
           <div id="formWrap" style="display:none;margin-top:1.2rem;padding-top:1.2rem;border-top:.5px solid var(--brand-lavender)">
             <form class="form-brand" id="reviewForm" novalidate>
@@ -209,7 +209,7 @@
 
               <!-- Label soggiorno: select se multipli, testo+hidden se uno solo -->
               {% if soggiorni_recensibili|length > 1 %}
-              <div class="mb-3">
+              <div class="mb-3" id="staySelectWrap">
                 <label class="form-label" for="prenotazione_id">Soggiorno da recensire *</label>
                 <select class="form-select" id="prenotazione_id">
                   {% for s in soggiorni_recensibili %}
@@ -218,7 +218,7 @@
                 </select>
               </div>
               {% else %}
-              <div class="mb-3" style="font-size:.83rem;color:var(--text-body);padding:.6rem .9rem;background:var(--brand-fog);border:.5px solid var(--brand-lavender);border-radius:var(--radius-sm)">
+              <div class="mb-3" id="staySingleWrap" style="font-size:.83rem;color:var(--text-body);padding:.6rem .9rem;background:var(--brand-fog);border:.5px solid var(--brand-lavender);border-radius:var(--radius-sm)">
                 Soggiorno: <strong>{{ soggiorno_recensibile }}</strong>
               </div>
               <input type="hidden" id="prenotazione_id" value="{{ soggiorno_recensibile.id }}">
@@ -226,9 +226,9 @@
 
               <div class="mb-3">
                 <label class="form-label">Valutazione *</label>
-                <div class="d-flex gap-1" id="starRow">
+                <div class="d-flex gap-1" id="starRow" role="radiogroup" aria-label="Seleziona una valutazione da 1 a 5 stelle">
                   {% for n in "12345" %}
-                  <button type="button" class="sp-star" data-v="{{ n }}"
+                  <button type="button" class="sp-star" data-v="{{ n }}" aria-label="{{ n }} stelle"
                           style="font-size:1.7rem;background:none;border:none;cursor:pointer;color:var(--brand-lavender);padding:0;line-height:1;transition:color .12s">★</button>
                   {% endfor %}
                 </div>
@@ -243,7 +243,7 @@
                 <textarea class="form-control" id="rBody" rows="3" placeholder="Racconta il tuo soggiorno..."></textarea>
                 <div class="form-hint">Min. 20 caratteri · Pubblicata dopo approvazione</div>
               </div>
-              <button type="submit" class="btn-submit w-100" id="submitBtn" disabled>Invia recensione</button>
+              <button type="submit" class="btn-brand btn w-100" id="submitBtn" disabled>Invia recensione</button>
               <div id="errorNote" style="display:none;margin-top:.75rem;padding:.7rem;background:var(--bg-danger);border-radius:var(--radius-sm);font-size:.84rem;color:var(--color-danger);text-align:center"></div>
             </form>
             <div id="successNote" style="display:none;margin-top:.75rem;padding:.7rem;background:var(--bg-success);border-radius:var(--radius-sm);font-size:.84rem;color:var(--color-success);text-align:center">
@@ -253,7 +253,7 @@
 
         {% elif request.user.is_authenticated %}
         <div class="mt-4" style="position:relative;display:inline-block;width:100%">
-            <button class="btn-booking w-100" disabled style="cursor:not-allowed">
+            <button class="btn-brand btn w-100" disabled style="cursor:not-allowed">
                 Lascia una recensione
             </button>
             <div data-bs-toggle="tooltip" 
@@ -265,7 +265,7 @@
 
         {% else %}
         <div class="mt-4" style="position:relative;display:inline-block;width:100%">
-            <button class="btn-booking w-100" disabled style="cursor:not-allowed">
+            <button class="btn-brand btn w-100" disabled style="cursor:not-allowed">
                 Lascia una recensione
             </button>
             <div data-bs-toggle="tooltip"
@@ -300,7 +300,7 @@
   });
 (function () {
 
-  /* filtri */
+  /* ---------- filtri recensioni ---------- */
   let cache = null;
   function getRevs() {
     if (!cache) cache = [...document.querySelectorAll('.rev-item')].map(el => ({ el, s: +el.dataset.stars }));
@@ -312,11 +312,15 @@
       const f = +btn.dataset.filter;
       if (f !== 0 && f === activeFlt) {
         activeFlt = 0;
-        document.querySelectorAll('#filterRow .filter-btn').forEach(b => b.classList.remove('active'));
+        document.querySelectorAll('#filterRow .filter-btn').forEach(b => { b.classList.remove('active'); b.setAttribute('aria-pressed', 'false'); });
         applyFilter(0);
       } else {
         activeFlt = f;
-        document.querySelectorAll('#filterRow .filter-btn').forEach(b => b.classList.toggle('active', +b.dataset.filter === f));
+        document.querySelectorAll('#filterRow .filter-btn').forEach(b => {
+          const isActive = +b.dataset.filter === f;
+          b.classList.toggle('active', isActive);
+          b.setAttribute('aria-pressed', String(isActive));
+        });
         applyFilter(f);
       }
     });
@@ -325,19 +329,54 @@
     let vis = 0;
     getRevs().forEach(({ el, s }) => { const show = f === 0 || s === f; el.style.display = show ? '' : 'none'; if (show) vis++; });
     const en = document.getElementById('emptyNote');
-    if (en) en.style.display = vis === 0 ? 'block' : 'none';
+    const noReviews = document.getElementById('noReviewsNote');
+    // Se non ci sono recensioni in assoluto, il messaggio "nessun risultato" per il filtro non deve mai comparire
+    if (en) en.style.display = (vis === 0 && !noReviews) ? 'block' : 'none';
   }
 
-  /* toggle form */
+  /* ---------- gestione soggiorni recensibili ---------- */
   const writeBtn = document.getElementById('writeBtn');
   const formWrap = document.getElementById('formWrap');
-  let formLocked = false;
+  const select = document.getElementById('prenotazione_id'); // può essere <select> o <input type=hidden>
+  const staySelectWrap = document.getElementById('staySelectWrap');
+  const staySingleWrap = document.getElementById('staySingleWrap');
+  const isMultiStay = select && select.tagName === 'SELECT';
+
   writeBtn && writeBtn.addEventListener('click', () => {
-    if (formLocked) return;
-    formWrap.style.display = formWrap.style.display === 'block' ? 'none' : 'block';
+    if (writeBtn.disabled) return;
+    const opening = formWrap.style.display !== 'block';
+    formWrap.style.display = opening ? 'block' : 'none';
   });
 
-  /* stelle */
+  function lockWriteBtn(message) {
+    if (!writeBtn || writeBtn.querySelector('.locked-overlay')) return;
+    writeBtn.disabled = true;
+    writeBtn.style.position = 'relative';
+    writeBtn.style.cursor = 'not-allowed';
+    const overlay = document.createElement('div');
+    overlay.className = 'locked-overlay';
+    overlay.title = message || 'Hai già lasciato una recensione';
+    overlay.style.cssText = 'position:absolute;inset:0;cursor:not-allowed;background:rgba(244,248,252,.45)';
+    writeBtn.appendChild(overlay);
+    formWrap.style.display = 'none';
+  }
+
+  function removeReviewedStay(id) {
+    if (isMultiStay) {
+      const opt = [...select.options].find(o => o.value === String(id));
+      if (opt) opt.remove();
+      if (select.options.length === 0) {
+        lockWriteBtn('Hai recensito tutti i tuoi soggiorni');
+      } else if (select.options.length === 1 && staySelectWrap) {
+        // resta comunque selezionabile: nessuna azione necessaria, lo select funziona anche con 1 sola opzione
+      }
+    } else {
+      // un solo soggiorno recensibile: dopo l'invio non ne restano altri
+      lockWriteBtn();
+    }
+  }
+
+  /* ---------- stelle ---------- */
   const spStars = [...document.querySelectorAll('.sp-star')];
   let picked = 0;
   spStars.forEach((s, i) => {
@@ -347,7 +386,7 @@
   });
   function paintStars(n) { spStars.forEach((x, j) => x.style.color = j < n ? '#E8A030' : 'var(--brand-lavender)'); }
 
-  /* validazione */
+  /* ---------- validazione ---------- */
   const rTitle = document.getElementById('rTitle');
   const rBody = document.getElementById('rBody');
   const submitBtn = document.getElementById('submitBtn');
@@ -358,14 +397,22 @@
   rTitle && rTitle.addEventListener('input', validate);
   rBody && rBody.addEventListener('input', validate);
 
-  /* invio */
+  function resetForm() {
+    picked = 0;
+    document.getElementById('ratingVal').value = 0;
+    paintStars(0);
+    if (rTitle) rTitle.value = '';
+    if (rBody) rBody.value = '';
+    validate();
+  }
+
+  /* ---------- invio ---------- */
   const form = document.getElementById('reviewForm');
   const successNote = document.getElementById('successNote');
   const errorNote = document.getElementById('errorNote');
 
   function getPrenotazioneId() {
-    const el = document.getElementById('prenotazione_id');
-    return el ? el.value : '';
+    return select ? select.value : '';
   }
 
   form && form.addEventListener('submit', async e => {
@@ -373,30 +420,43 @@
     submitBtn.disabled = true;
     submitBtn.textContent = 'Invio…';
     errorNote.style.display = 'none';
+
+    const submittedId = getPrenotazioneId();
+
     try {
       const res = await fetch("{% url 'invia_recensione' %}", {
         method: 'POST',
         headers: { 'Content-Type': 'application/json', 'X-CSRFToken': form.querySelector('[name=csrfmiddlewaretoken]').value },
-        body: JSON.stringify({ prenotazione_id: getPrenotazioneId(), valutazione: picked, titolo: rTitle.value.trim(), testo: rBody.value.trim() }),
+        body: JSON.stringify({ prenotazione_id: submittedId, valutazione: picked, titolo: rTitle.value.trim(), testo: rBody.value.trim() }),
       });
       const data = await res.json();
-      if (data.ok) {
-        form.style.display = 'none';
-        successNote.style.display = 'block';
-        formLocked = true;
 
-        const overlay = document.createElement('div');
-        overlay.title = 'Hai già lasciato una recensione';
-        overlay.style.cssText = 'position:absolute;inset:0;cursor:not-allowed;background:rgba(244,248,252,.45)';
-        writeBtn.style.position = 'relative';
-        writeBtn.appendChild(overlay);
+      if (data.ok) {
+        errorNote.style.display = 'none';
+        successNote.style.display = 'block';
+        successNote.style.opacity = '1';
+
+        // rimuove il soggiorno appena recensito dalle opzioni disponibili
+        removeReviewedStay(submittedId);
+
+        // se restano altri soggiorni da recensire, permette di scrivere subito un'altra recensione
+        const stillOpen = isMultiStay && select.options.length > 0;
+        resetForm();
+        submitBtn.textContent = 'Invia recensione';
+        if (!stillOpen) {
+          form.style.display = 'none';
+        }
 
         setTimeout(() => {
           successNote.style.transition = 'opacity .6s';
           successNote.style.opacity = '0';
-          setTimeout(() => { successNote.style.display = 'none'; formWrap.style.display = 'none'; }, 600);
+          setTimeout(() => {
+            successNote.style.display = 'none';
+            if (!stillOpen) formWrap.style.display = 'none';
+            form.style.display = '';
+          }, 600);
         }, 4000);
-      }else {
+      } else {
         errorNote.textContent = data.errore || 'Errore. Riprova.';
         errorNote.style.display = 'block';
         submitBtn.disabled = false;
