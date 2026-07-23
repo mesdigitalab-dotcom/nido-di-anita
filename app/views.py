@@ -278,18 +278,49 @@ def serve_calendario(request):
         },
     )
 
+@login_required
 def test(request):
-  start_str = request.GET.get("start")
-  end_str   = request.GET.get("end")
-  utente_id = request.GET.get("id")
-  
-  start_dt = datetime.strptime(start_str, "%d/%m/%Y")
-  end_dt   = datetime.strptime(end_str,   "%d/%m/%Y")
-  utente   = User.objects.get(id=utente_id)
-  
-  Prenotazioni.objects.create(
-    cliente=utente,
-    inizio=start_dt,
-    fine=end_dt,
-  )
-  return render(request, 'home.html')
+    """
+    Copia di debug di send_mail: stessa logica, stessi parametri,
+    ma NON invia nessuna email. Serve solo per verificare che la
+    creazione della Prenotazione funzioni correttamente.
+    """
+    if request.method != "GET":
+        return JsonResponse({"errore": "Metodo non consentito"}, status=405)
+
+    note        = request.GET.get("note", "").strip()
+    persone     = request.GET.get("persone")
+    data_inizio = request.GET.get("start-date")
+    data_fine   = request.GET.get("end-date")
+    utente      = request.user
+
+    if not data_inizio or not data_fine:
+        return JsonResponse({
+            "errore": "Parametri mancanti",
+            "start-date_ricevuto": data_inizio,
+            "end-date_ricevuto": data_fine,
+            "querystring_completa": request.GET.dict(),
+        }, status=400)
+
+    try:
+        start_dt = datetime.strptime(data_inizio, "%d/%m/%Y")
+        end_dt   = datetime.strptime(data_fine,   "%d/%m/%Y")
+    except ValueError as e:
+        return JsonResponse({"errore": f"Formato data non valido: {e}"}, status=400)
+
+    prenotazione = Prenotazioni.objects.create(
+        cliente=utente,
+        inizio=start_dt,
+        fine=end_dt,
+    )
+
+    return JsonResponse({
+        "ok": True,
+        "messaggio": "Prenotazione creata correttamente (nessuna email inviata)",
+        "prenotazione_id": prenotazione.id,
+        "cliente": str(utente),
+        "note": note,
+        "persone": persone,
+        "inizio": start_dt.strftime("%d/%m/%Y"),
+        "fine": end_dt.strftime("%d/%m/%Y"),
+    })
