@@ -183,7 +183,7 @@ function isBusy(date) {
     const m = String(date.getMonth() + 1).padStart(2, "0");
     const d = String(date.getDate()).padStart(2, "0");
     const current = `${y}-${m}-${d}`;
-    return busyRanges.some(([start, end]) => current >= start && current < end);
+    return busyRanges.some(([start, end]) => current >= start && current <= end);
 }
 
 function updateStayPreview() {
