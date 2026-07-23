@@ -201,7 +201,7 @@
         <!-- Bottone + form -->
         {% if soggiorni_recensibili %}
 
-          <button class="btn-booking mt-4" id="writeBtn">Lascia una recensione</button>
+          <button class="btn-brand btn mt-4" id="writeBtn">Lascia una recensione</button>
 
           <div id="formWrap" style="display:none;margin-top:1.2rem;padding-top:1.2rem;border-top:.5px solid var(--brand-lavender)">
             <form class="form-brand" id="reviewForm" novalidate>
@@ -253,7 +253,7 @@
 
         {% elif request.user.is_authenticated %}
         <div class="mt-4" style="position:relative;display:inline-block;width:100%">
-            <button class="btn-booking w-100" disabled style="cursor:not-allowed">
+            <button class="btn-brand btn" disabled style="cursor:not-allowed">
                 Lascia una recensione
             </button>
             <div data-bs-toggle="tooltip" 
@@ -265,7 +265,7 @@
 
         {% else %}
         <div class="mt-4" style="position:relative;display:inline-block;width:100%">
-            <button class="btn-booking w-100" disabled style="cursor:not-allowed">
+            <button class="btn-brand btn" disabled style="cursor:not-allowed">
                 Lascia una recensione
             </button>
             <div data-bs-toggle="tooltip"
