@@ -55,30 +55,23 @@
       </div>
 
       <!-- Secondaria 2 -->
-      <div class="gallery-grid__secondary" style="position:relative" onclick="openLightbox(2)">
+     <div class="gallery-grid__secondary" style="position:relative" onclick="openLightbox(2)">
         <img src="{% if gallery_preview.2 %}{{ gallery_preview.2.image.url }}{% else %}https://images.unsplash.com/photo-1582268611958-ebfd161ef9cf?w=600&q=80{% endif %}"
              alt="Foto della casa vacanze – immagine 3"
              class="gallery-img"
              loading="lazy"/>
         <div class="gallery-overlay"></div>
 
-        <button class="gallery-count-btn btn-brand">
-          📷 Tutte le {% if gallery_images %}{{ gallery_images|length }}{% else %}18{% endif %} foto
-        </button>
-      </div>
-
-      <!-- Nuova immagine grande sotto -->
-      <div class="gallery-grid__bottom" onclick="openLightbox(3)">
+     <div class="gallery-grid__bottom" onclick="openLightbox(3)">
         <img src="{% if gallery_preview.3 %}{{ gallery_preview.3.image.url }}{% else %}https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?w=900&q=80{% endif %}"
              alt="Foto della casa vacanze – immagine 4"
              class="gallery-img"
              loading="lazy"/>
         <div class="gallery-overlay"></div>
       </div>
-
-    </div>
-
-  </div>
+     
+          </div>
+     </div>
 </section>
 
 
