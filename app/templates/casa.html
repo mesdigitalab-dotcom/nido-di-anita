@@ -491,10 +491,6 @@
 })();
 </script>
 <script>
-window.addEventListener('scroll', () => {
-  document.getElementById('mainHeader').classList.toggle('scrolled', window.scrollY > 10);
-});
-
 /* animate-on-scroll (stesso observer usato nelle altre pagine) */
 const obs = new IntersectionObserver(entries => {
   entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
