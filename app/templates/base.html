@@ -157,8 +157,16 @@
     <script>
     (function() {
         var header = document.getElementById('mainHeader');
+        var headerScrolled = false;
         window.addEventListener('scroll', function() {
-            header.classList.toggle('scrolled', window.scrollY > 10);
+            var y = window.scrollY;
+            if (!headerScrolled && y > 30) {
+                headerScrolled = true;
+                header.classList.add('scrolled');
+            } else if (headerScrolled && y < 10) {
+                headerScrolled = false;
+                header.classList.remove('scrolled');
+            }
         }, { passive: true });
 
         var obs = new IntersectionObserver(function(entries) {
